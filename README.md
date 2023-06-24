@@ -11,7 +11,7 @@ Trying out Python Flask with Git
     * [Cloning GitHub Repos](#git-cloning-jutstu)
     * [Installing Dependencies 2](#installing-dependencies-2)
     * [Runnning your project](#running-it-down)
-* [Tips and shitz]()
+* [Tips and shitz](#helpful-tips)
 
 ## First Time?
 This section is for you if you're starting out with Flask, or you forgotten about Flask after your Tri Break.
