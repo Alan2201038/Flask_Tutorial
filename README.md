@@ -11,7 +11,7 @@ Trying out Python Flask with Git
     * [Cloning GitHub Repos](#git-cloning-jutstu)
     * [Installing Dependencies 2](#installing-dependencies-2)
     * [Runnning your project](#running-it-down)
-* [Tips and shitz]()
+* [Tips and shitz](#helpful-tips)
 
 ## First Time?
 This section is for you if you're starting out with Flask, or you forgotten about Flask after your Tri Break.
@@ -193,5 +193,21 @@ flask run --debug
 and you're done!
 
 ## Helpful Tips
+-  To access the webserver on your phone:
+    1. Make sure your phone and computer are connected to the same wifi.
+    <br>
+    2. Find your computer's IP address. (IPv4 Address)
+        - For Windows, open Command Prompt and type in `ipconfig`.
+        - For Mac, open Terminal and type in `ifconfig`.
+        <br>
+    3. Run your webserver using this command
+        ```
+        flask run --debug -h insert IPv4 Address here
+        ```
+    4. Open your phone's browser and type in the IPv4 Address with the port number.
+        ```
+        IPv4 Address here:5000
+        ```
+    <br>
 - Just Google Bro
 - If found anything please update here!
