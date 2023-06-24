@@ -158,7 +158,7 @@ This section is for clonning other GitHub repos that invloves Flask and how to r
 <br>
 2. Otherwise here is how to git clone, if you forgotten or smth idk.
 
-    git clone (github repo https)
+       git clone (github repo https)
 
 ### Installing Dependencies 2
 
