@@ -1,11 +1,25 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hello World!'
+    return render_template('index.html')
 
-@app.route('/gay')
-def gay():
-    return 'Gay'
+@app.route('/camera')
+def camera():
+    return render_template('camera.html')
+
+@app.route('/status')
+def status():
+    return render_template('status.html')
+
+@app.route('/trash')
+def trash():
+    return render_template('trash.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+# To run flask app, use this command
+# flask run --debug -h ( ipv4 address )
