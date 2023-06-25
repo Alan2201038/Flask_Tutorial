@@ -194,21 +194,30 @@ and you're done!
 
 ## Helpful Tips
 -  To access the webserver on your phone:
+  
     1. Make sure your phone and computer are connected to the same wifi.
+   
     <br>
+    
     2. Find your computer's IP address. (IPv4 Address)
         - For Windows, open Command Prompt and type in `ipconfig`.
         - For Mac, open Terminal and type in `ifconfig`.
-        <br>
+       
+   <br>
+        
     3. Run your webserver using this command
+   
         ```
         flask run --debug -h insert IPv4 Address here
         ```
+        
     4. Open your phone's browser and type in the IPv4 Address with the port number.
+ 
         ```
         IPv4 Address here:5000
         ```
     <br>
+    
 - Just Google Bro
 - If found anything please update here!
 
