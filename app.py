@@ -16,7 +16,7 @@ def status():
 
 @app.route('/trash')
 def trash():
-    return render_template('trash.html')
+    return render_template('trash1.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
