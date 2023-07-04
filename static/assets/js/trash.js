@@ -12,7 +12,7 @@ const options = {
 }
 
 // Create an MQTT client
-var client = mqtt.connect("192.168.10.191:1883");
+var client = mqtt.connect(central_hub,options);
 
 // MQTT on connect event handler
 client.on("connect", function() {

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trash Detection Level</title>
+  <style>
+    .trash-level-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 20px auto;
+      width: 400px;
+    }
+
+    .trash-level {
+      width: 180px;
+      height: 300px;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      position: relative;
+    }
+
+    .trash-level .indicator {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: #4CAF50;
+      transition: height 0.5s ease-in-out;
+    }
+
+    .trash-level .label {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+      margin-top: 5px;
+    }
+
+    .trash-level .indicator .percentage {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="trash-level-container">
+    <div class="trash-level">
+      <div class="indicator" id="indicator1"></div>
+      <div class="label">Trash Bin #1</div>
+    </div>
+    <div class="trash-level">
+      <div class="indicator" id="indicator2"></div>
+      <div class="label">Trash Bin #2</div>
+    </div>
+  </div>
+
+  <button onclick="setTrashLevel(20, 'indicator1')">20%</button>
+  <button onclick="setTrashLevel(50, 'indicator1')">50%</button>
+  <button onclick="setTrashLevel(80, 'indicator1')">80%</button>
+
+  <button onclick="setTrashLevel(40, 'indicator2')">40%</button>
+  <button onclick="setTrashLevel(60, 'indicator2')">60%</button>
+  <button onclick="setTrashLevel(90, 'indicator2')">90%</button>
+
+  <script>
+    // Example usage to set the trash level (percentage)
+    setTrashLevel(80, 'indicator1');
+    setTrashLevel(60, 'indicator2');
+
+    function setTrashLevel(percentage, indicatorId) {
+      var indicator = document.getElementById(indicatorId);
+      var indicatorHeight = percentage + '%';
+
+      indicator.style.height = indicatorHeight;
+      indicator.innerHTML = '<div class="percentage">' + percentage + '%</div>';
+    }
+  </script>
+</body>
+</html>

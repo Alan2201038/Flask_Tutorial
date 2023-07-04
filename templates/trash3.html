@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trash Levels</title>
+  <link rel="stylesheet" href="/static/assets/css/trash.css">
+</head>
+<body>
+  <div class="trash-container">
+    <div class="trash-level">
+      <div class="indicator" id="indicator1"></div>
+      <div class="label">Trash Level 1</div>
+    </div>
+
+    <div class="trash-level">
+      <div class="indicator" id="indicator2"></div>
+      <div class="label">Trash Level 2</div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('connect', function() {
+      console.log('Connected to server');
+    });
+
+    socket.on('update', function(data) {
+      var topic = data.topic;
+      var trashLevel = parseFloat(data.payload);
+      setTrashLevel(topic, trashLevel);
+    });
+
+    function setTrashLevel(topic, percentage) {
+      var indicator;
+      if (topic === '/trash1') {
+        indicator = document.getElementById('indicator1');
+      } else if (topic === '/trash2') {
+        indicator = document.getElementById('indicator2');
+      }
+
+      if (indicator) {
+        var indicatorHeight = percentage + '%';
+        indicator.style.height = indicatorHeight;
+        indicator.innerHTML = '<div class="percentage">' + percentage.toFixed(2) + '%</div>';
+      }
+    }
+  </script>
+</body>
+</html>

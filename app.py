@@ -21,11 +21,11 @@ def status():
 
 @app.route('/trash')
 def trash():
-    return render_template('trash1.html',data=data)
+    return render_template('trash.html',data=data)
     
-@app.route('/data')
-def data():
-    return render_template('data.html')
+@app.route('/data_test')
+def data_test():
+    return render_template('trash3.html')
     
 @socketio.on('message')
 def handle_message(message):
@@ -35,7 +35,9 @@ def handle_message(message):
 
 # Define callback function for received messages
 def on_message(client, userdata, msg):
-    message = msg.payload.decode()
+    topic = msg.topic
+    payload = msg.payload.decode()
+    message = {'topic': topic, 'payload': payload}
     # Process received message
     print("Recevied message:", msg.payload.decode())
     socketio.emit('update', message)
@@ -64,8 +66,10 @@ broker_port = 1883
 client.connect(broker_address, broker_port)
 
 # Subscribe to topic
-topic1 = "/trash"
+topic1 = "/trash1"
+topic2 = "/trash2"
 client.subscribe(topic1)
+client.subscribe(topic2)
 
 # Start the MQTT client loop
 client.loop_start()
