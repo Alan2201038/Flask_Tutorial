@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="/static/assets/css/trash.css">
+    <link rel="stylesheet" href="/static/assets/css/cards.css">
 </head>
 
 <body id="page-top">
@@ -39,66 +39,39 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-7 col-xl-8">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Camera View</h6>
-                                </div>
-                                <div class="card-body"><iframe allowfullscreen="" frameborder="0" width="560" height="315"></iframe></div>
+                    <div class="ag-format-container">
+                        <div class="ag-courses_box">
+                            {% if bin1_reachable %}
+                            <div class="ag-courses_item">
+                                <a href="/bin1" class="ag-courses-item_link">
+                                  <div class="ag-courses-item_bg"></div>
+                        
+                                  <div class="ag-courses-item_title">
+                                    Bin 1
+                                  </div>
+                                </a>
                             </div>
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Trash Levels</h6>
-                                </div>
-                                <div class="card-group">
-                                    <div class="card align-items-center">
-                                        <div class="card-body">
-                                            <h4 class="card-title text-center">Plastic Only</h4>
-                                            <div class="trash-level">
-                                                <div class="indicator" id="indicator1"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card align-items-center">
-                                        <div class="card-body">
-                                            <h4 class="card-title text-center">Others</h4>
-                                            <div class="trash-level">
-                                                <div class="indicator" id="indicator2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            {% endif %}
+                            {% if bin2_reachable %}
+                            <div class="ag-courses_item">
+                                <a href="/bin2" class="ag-courses-item_link">
+                                  <div class="ag-courses-item_bg"></div>
+                          
+                                  <div class="ag-courses-item_title">
+                                    Bin 2
+                                  </div>
+                                </a>
+                            </div>
+                            {% endif %}  
+                            {% if not bin1_reachable and not bin2_reachable %}
+                            <div>
+                                <div class="display-6" style="color: black;">
+                                    NO IOT DEVICES CONNECTED
                                 </div>
                             </div>
+                            {% endif %}                    
                         </div>
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">PIs Status</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div>
-                                        <div><img src="static/assets/img/avatars/avatar5.jpeg" style="border-radius: 30px;">
-                                            <p style="color: var(--bs-emphasis-color);">PI 1 Status: Online</p>
-                                        </div>
-                                        <div></div>
-                                    </div>
-                                    <div><img src="static/assets/img/avatars/avatar2.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 2 Status: Online</p>
-                                    </div>
-                                    <div><img src="static/assets/img/avatars/avatar1.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 3 Status: Online</p>
-                                    </div>
-                                    <div><img src="static/assets/img/avatars/avatar3.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 4 Status: Online</p>
-                                    </div>
-                                    <div><img src="static/assets/img/avatars/avatar4.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 5 Status: Online</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                      </div>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">

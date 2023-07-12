@@ -50,8 +50,8 @@
                                     <div class="card align-items-center">
                                         <div class="card-body">
                                             <h4 class="card-title text-center">Paper Only</h4>
-                                            <div class="trash-level" id="trash-level1">
-                                                <div class="text-center" style="color: black; padding-top: 15px; font-size: 58px;" id="indicator1">
+                                            <div class="bin-level" id="trash-level1">
+                                                <div class="text-center" style="color: black; padding-top: 30%; font-size: 34px;" id="indicator1">
                                                     The Bin is Closed
                                                 </div>
                                             </div>
@@ -64,8 +64,8 @@
                                     <div class="card align-items-center">
                                         <div class="card-body">
                                             <h4 class="card-title text-center">Others</h4>
-                                            <div class="trash-level" id="trash-level2">
-                                                <div class="text-center" style="color: black; padding-top: 15px; font-size: 58px;" id="indicator2">
+                                            <div class="bin-level" id="trash-level2">
+                                                <div class="text-center" style="color: black; padding-top: 30%; font-size: 34px;" id="indicator2">
                                                     The Bin is Closed
                                                 </div>
                                             </div>
@@ -126,6 +126,7 @@
             // Emit an MQTT message to the server
             socket.emit('mqtt_publish', { message, topic: 'bin2' });    
             changeStatus(message, indicatorId);
+            
         }
 
         function changeStatus(message, indicatorId){
