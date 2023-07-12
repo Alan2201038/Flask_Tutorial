@@ -35,18 +35,12 @@
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid">
-                        <h3 class="text-dark mb-0">Dashboard</h3>
+                        <h3 class="text-dark mb-0">Bin 1</h3>
                     </div>
                 </nav>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-7 col-xl-8">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Camera View</h6>
-                                </div>
-                                <div class="card-body"><iframe allowfullscreen="" frameborder="0" width="560" height="315"></iframe></div>
-                            </div>
                             <div class="card shadow mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-primary fw-bold m-0">Trash Levels</h6>
@@ -78,24 +72,15 @@
                                 </div>
                                 <div class="card-body">
                                     <div>
-                                        <div><img src="static/assets/img/avatars/avatar5.jpeg" style="border-radius: 30px;">
-                                            <p style="color: var(--bs-emphasis-color);">PI 1 Status: Online</p>
-                                        </div>
-                                        <div></div>
+                                        <h3 style="font-size: 26px;">Servo Motors PI</h3>
+                                        <p>Status: <span class="status" id="status-motor1"></span></p>
+                                        <p>Temperature: <span class="temp" id="jj-temp"></span> <span id="tempIcon"></span></p>
                                     </div>
-                                    <div><img src="static/assets/img/avatars/avatar2.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 2 Status: Online</p>
+                                    <div style="padding-top: 25px;">
+                                        <h3 style="font-size: 26px;">Camera & Sensors PI</h3>
+                                        <p>Status: <span class="status" id="status-camera"></span></p>
+                                        <p>Temperature: <span class="temp" id="travis-temp"></span> <span id="tempIcon"></span></p>
                                     </div>
-                                    <div><img src="static/assets/img/avatars/avatar1.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 3 Status: Online</p>
-                                    </div>
-                                    <div><img src="static/assets/img/avatars/avatar3.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 4 Status: Online</p>
-                                    </div>
-                                    <div><img src="static/assets/img/avatars/avatar4.jpeg" style="border-radius: 30px;">
-                                        <p style="color: var(--bs-emphasis-color);">PI 5 Status: Online</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,6 +122,37 @@
             indicator.innerHTML = '<div class="percentage">' + percentage.toFixed(2) + '%</div>';
         }
         }
+
+        function updateStatus(hostname, result) {
+            var indicator = document.getElementById('status-' + hostname);
+
+            if (result === 'online') {
+                indicator.textContent = 'online';
+                indicator.style.color = 'green';
+            } else {
+                indicator.textContent = 'offline';
+                indicator.style.color = 'red';
+            }
+        }
+
+        function pingHostname(hostname) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/ping/' + hostname, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    updateStatus(hostname, response.status);
+                }
+            };
+
+            xhr.send();
+        }
+
+        setInterval(function() {
+            pingHostname('camera');
+            pingHostname('motor1');
+        }, 5000);
     </script>
 </body>
 

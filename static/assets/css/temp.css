@@ -1,0 +1,27 @@
+.temp {
+    font-weight: bold;
+}
+
+.temp-low {
+    color: green;
+}
+
+.temp-medium {
+    color: orange;
+}
+
+.temp-high {
+    color: red;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.online {
+    color: green;
+}
+
+.offline {
+    color: red;
+}

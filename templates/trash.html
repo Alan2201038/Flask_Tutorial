@@ -95,16 +95,31 @@
 
     function setTrashLevel(topic, percentage) {
       var indicator;
-      if (topic === '/trash1') {
+      if (topic === 'trash/plastic') {
         indicator = document.getElementById('indicator1');
-      } else if (topic === '/trash2') {
+      } else if (topic === 'trash/general') {
         indicator = document.getElementById('indicator2');
       }
 
       if (indicator) {
-        var indicatorHeight = percentage + '%';
-        indicator.style.height = indicatorHeight;
-        indicator.innerHTML = '<div class="percentage">' + percentage.toFixed(2) + '%</div>';
+        var fixpercent =  ( percentage / 15.00 ) * 100;
+        var actualpercent = 100 - fixpercent;
+
+        if (actualpercent >= 0 && actualpercent < 100) {
+            var indicatorHeight = actualpercent + '%';
+            indicator.style.height = indicatorHeight;
+            indicator.innerHTML = '<div class="percentage">' + (100 - fixpercent).toFixed(2) + '%</div>';
+        }
+        else if (fixpercent < 0) {
+            indicatorHeight = 0 + '%';
+            indicator.style.height = indicatorHeight;
+            indicator.innerHTML = '<div class="percentage">0.00%</div>';
+        }
+        else if (fixpercent > 100) {
+            indicatorHeight = 100 + '%';
+            indicator.style.height = indicatorHeight;
+            indicator.innerHTML = '<div class="percentage">100.00%</div>';
+        }
       }
     }
   </script>
