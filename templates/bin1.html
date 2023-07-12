@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="/static/assets/css/trash.css">
+    <link rel="stylesheet" href="/static/assets/css/temp.css">
 </head>
 
 <body id="page-top">
@@ -106,21 +107,54 @@
         var topic = data.topic;
         var trashLevel = parseFloat(data.payload);
         setTrashLevel(topic, trashLevel);
+        setTempLevel(topic, trashLevel );
         });
 
         function setTrashLevel(topic, percentage) {
-        var indicator;
-        if (topic === 'trash/plastic') {
-            indicator = document.getElementById('indicator1');
-        } else if (topic === 'trash/general') {
-            indicator = document.getElementById('indicator2');
+            var indicator;
+            if (topic === 'trash/plastic') {
+                indicator = document.getElementById('indicator1');
+            } else if (topic === 'trash/general') {
+                indicator = document.getElementById('indicator2');
+            }
+
+            if (indicator) {
+                var indicatorHeight = percentage + '%';
+                indicator.style.height = indicatorHeight;
+                indicator.innerHTML = '<div class="percentage">' + percentage.toFixed(2) + '%</div>';
+            }
         }
 
-        if (indicator) {
-            var indicatorHeight = percentage + '%';
-            indicator.style.height = indicatorHeight;
-            indicator.innerHTML = '<div class="percentage">' + percentage.toFixed(2) + '%</div>';
-        }
+        function setTempLevel(topic, temperature) {
+            var indicator;
+            var timeoutId;
+            var statusElement;
+
+            if (topic === 'temp/travis') {
+                indicator = document.getElementById('travis-temp');
+            }
+            else if (topic === 'temp/jj') {
+                indicator = document.getElementById('jj-temp');
+            }
+
+            if (indicator) {
+                indicator.textContent = temperature + "°C";
+
+                indicator.className = "temp"; // Reset the class
+
+                var tempIcon = document.getElementById("tempIcon");
+                tempIcon.innerHTML = ""; // Clear the previous icon
+
+                if (temperature < 45) {
+                    indicator.classList.add("temp-low");
+                } else if (temperature >= 45 && temperature < 55) {
+                    indicator.classList.add("temp-medium");
+                } else {
+                    indicator.classList.add("temp-high");
+                    tempIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+                }
+
+            }
         }
 
         function updateStatus(hostname, result) {
