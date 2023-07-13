@@ -30,8 +30,8 @@ def bin1():
     if is_reachable1:
         return render_template('bin1.html', bin1_reachable=is_reachable1, bin2_reachable=is_reachable2)
     else:
-        return render_template('bin1.html', bin1_reachable=is_reachable1, bin2_reachable=is_reachable2)
-        # return render_template('offline.html')
+        # return render_template('bin1.html', bin1_reachable=is_reachable1, bin2_reachable=is_reachable2)
+        return render_template('offline.html')
 
 @app.route('/bin2')
 def bin2():
@@ -45,8 +45,8 @@ def bin2():
     if is_reachable2:
         return render_template('bin2.html', bin1_reachable=is_reachable1, bin2_reachable=is_reachable2)
     else:
-        # return render_template('offline.html')
-        return render_template('bin2.html', bin1_reachable=is_reachable1, bin2_reachable=is_reachable2)
+        return render_template('offline.html')
+        # return render_template('bin2.html', bin1_reachable=is_reachable1, bin2_reachable=is_reachable2)
 
 def perform_ping(hostname):
     # Implement the ping operation using a library or system command
